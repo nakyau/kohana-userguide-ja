@@ -11,21 +11,27 @@ return array
 	
 	// Leave this alone
 	'modules' => array(
-
 		// This should be the path to this modules userguide pages, without the 'guide/'. Ex: '/guide/modulename/' would be 'modulename'
-		'userguide' => array(
-
+		'kohana' => array(
 			// Whether this modules userguide pages should be shown
 			'enabled' => TRUE,
-			
+			// The name that should show up on the userguide index page
+			'name' => 'Kohana',
+			// A short description of this module, shown on the index page
+			'description' => 'Kohanaのcore/systemについてのドキュメント',
+			// Copyright message, shown in the footer for this module
+			'copyright' => '&copy; 2011 - kohana-users.jp',
+			),
+		// This should be the path to this modules userguide pages, without the 'guide/'. Ex: '/guide/modulename/' would be 'modulename'
+		'userguide' => array(
+			// Whether this modules userguide pages should be shown
+			'enabled' => TRUE,
 			// The name that should show up on the userguide index page
 			'name' => 'Userguide',
-
 			// A short description of this module, shown on the index page
-			'description' => 'Documentation viewer and api generation.',
-			
+			'description' => 'ドキュメントのビューワーとAPI生成',
 			// Copyright message, shown in the footer for this module
-			'copyright' => '&copy; 2008–2011 Kohana Team',
+			'copyright' => '&copy; 2011 - kohana-users.jp',
 		)	
 	)
 );

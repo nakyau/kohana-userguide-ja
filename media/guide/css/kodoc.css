@@ -140,3 +140,5 @@ h6:hover a.permalink {
 #footer { padding: 1em 0; background: #00262f; color: #405c63; text-shadow: #00262f 0.1em 0.1em 1px; font-size: 0.9em; }
 	#footer a { color: #809397; }
 	#footer div.last { text-align: right; }
+
+.original-doc { display: none; }

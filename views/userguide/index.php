@@ -1,6 +1,6 @@
-<h1>User Guide</h1>
+<h1><?php echo __('User Guide'); ?></h1>
 
-<p>The following modules have userguide pages:</p>
+<p><?php echo __('The following modules have userguide pages:'); ?></p>
 
 <?php if( ! empty($modules)): ?>
 
