@@ -1,6 +1,6 @@
 # セッション {#sessions}
 
-Kohanaはクッキーでもセッションでも簡単に使えるクラスを提供します。セッションとクッキーの両方の高いレベルで同様に機能します。それらは開発者が特定のクライアントについての一時的または永続的な情報を後に（通常はリクエスト間で何かを自足させるために）取得するために格納することを可能にします。
+Kohanaはクッキーでもセッションでも簡単に使えるクラスを提供します。セッションとクッキーの両方において高いレベルで同様に機能します。それらは開発者が特定のクライアントについての一時的または永続的な情報を後に（通常はリクエスト間で何かを持続させる目的で）取得するために格納することを可能にします。
 
 セッションは一時的またはプライベートなデータを格納するために使用されます。取り扱いに非常な注意を要するデータは[Session]クラスを"database"アダプターまたは"native"アダプターと共に使用して格納するべきです。"cookie"アダプターを使用するときはセッションは常に暗号化されているべきです。
 
@@ -15,7 +15,7 @@ Sessions should be used for storing temporary or private data.  Very sensitive d
 
 [!!] For more information on best practices with session variables see [the seven deadly sins of sessions](http://lists.nyphp.org/pipermail/talk/2006-December/020358.html).
 </div>
-## データの格納、取得、削除 {#storing-retrieving-and-deleting-data}
+## データの登録、取得、削除 {#storing-retrieving-and-deleting-data}
 
 [Cookie] と [Session] はデータ格納のための互いによく似たAPIを提供します。両者の主な違いはSessionはオブジェクトを使用してアクセスされるのに対し、Cookieはスタティッククラスからアクセスされることです。
 
@@ -65,7 +65,7 @@ You can also use this to overload the `$_SESSION` global to get and set data in 
     $_SESSION[$key] = $value;
 </div>
 
-### データの格納 {#storing-data}
+### データの登録 {#storing-data}
 
 セッションまたはクッキーにデータを格納するには`set`メソッドを使用します:
 
@@ -100,16 +100,16 @@ Storing session or cookie data is done using the `set` method:
     // ユーザIDを取得
     $user = $session->get('user_id');
 
-### データの削除 {#deleting-data}
+### データの取得 {#retrieving-data}
 
-セッションまたはクッキーのデータを削除するには`delete`メソッドを使用します:
+セッションまたはクッキーのデータを取得するには`get`を使用します:
 
-    // セッションデータを削除
-    $session->delete($key);
+    // セッションデータを取得
+    $data = $session->get($key, $default_value);
 
+    // ユーザIDを取得
+    $user = $session->get('user_id');
 
-    // ユーザIDを削除
-    $session->delete('user_id');
 
 <div class="original-doc">
 ### Retrieving Data
@@ -122,6 +122,7 @@ Getting session or cookie data is done using the `get` method:
     // Get the user id
     $user = $session->get('user_id');
 </div>
+
 ### データの削除 {#deleting-data}
 
 セッションまたはクッキーのデータを削除するには`delete`メソッドを使用します:
