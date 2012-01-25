@@ -131,8 +131,27 @@ The most important setting is [Cookie::$salt], which is used for secure signing.
 
     Cookie::$salt = 'your secret is safe with me';
 
-[!!] Changing this value will render all cookies that have been set before invalid.
 
+[!!] この値を変更することは変更以前にセットされたクッキーを全て無効にすることになります。
+<div class="original-doc">
+[!!] Changing this value will render all cookies that have been set before invalid.
+</div>
+
+デフォルトではクッキーはブラウザを閉じるまで保存されています。生存時間を指定するには[Cookie::$expiration] の設定を変更します。
+
+    // クッキーの有効期限を1週間後に設定
+    Cookie::$expiration = 604800;
+
+    // 分かりやすくするために、整数値を使用する別の方法
+    Cookie::$expiration = Date::WEEK;
+
+
+クッキーにアクセスすることができるパスは[Cookie::$path]で制限できます。
+
+    // /public/* からのみクッキーを許可
+    Cookie::$path = '/public/';
+
+<div class="original-doc">
 By default, cookies are stored until the browser is closed. To use a specific lifetime, change the [Cookie::$expiration] setting:
 
     // Set cookies to expire after 1 week
@@ -145,7 +164,20 @@ The path that the cookie can be accessed from can be restricted using the [Cooki
 
     // Allow cookies only when going to /public/*
     Cookie::$path = '/public/';
+</div>
 
+クッキーにアクセスすることができるドメインも[Cookie::$domain]を使用して制限できます。
+
+    // www.example.com からのみクッキーを許可
+    Cookie::$domain = 'www.example.com';
+
+
+すべてのサブドメインからクッキーにアクセスできるようにするにはドメインの先頭に.(ドット)を付けてください。
+
+    // example.com と *.example.com からクッキーを許可
+    Cookie::$domain = '.example.com';
+
+<div class="original-doc">
 The domain that the cookie can be accessed from can also be restricted, using the [Cookie::$domain] setting.
 
     // Allow cookies only on the domain www.example.com
@@ -155,7 +187,22 @@ If you want to make the cookie accessible on all subdomains, use a dot at the be
 
     // Allow cookies to be accessed on example.com and *.example.com
     Cookie::$domain = '.example.com';
+</div>
 
+セキュアな(HTTPS)接続からのみクッキーへのアクセスを許可するには[Cookie::$secure]を使用します。
+
+    // セキュアな接続のみクッキーへのアクセスを許可
+    Cookie::$secure = TRUE;
+    
+    // 全ての接続においてクッキーへのアクセスを許可
+    Cookie::$secure = FALSE;
+
+javascriptを使用してのクッキーへのアクセスを防ぐには [Cookie::$httponly] を設定します。
+
+    // クッキーをjavascriptからアクセスできないようにする。
+    Cookie::$httponly = TRUE;
+
+<div class="original-doc">
 To only allow the cookie to be accessed over a secure (HTTPS) connection, use the [Cookie::$secure] setting.
 
     // Allow cookies to be accessed only on a secure connection
@@ -168,3 +215,4 @@ To prevent cookies from being accessed using Javascript, you can change the [Coo
 
     // Make cookies inaccessible to Javascript
     Cookie::$httponly = TRUE;
+</div>
