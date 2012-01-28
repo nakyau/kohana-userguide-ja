@@ -1,3 +1,14 @@
+# プロファイル
+Kohanaはあなたのアプリケーションの統計を表示する非常にシンプルな方法を提供します。
+
+1. [Kohana::find_file()]のような[Kohana]の共通メソッド呼び出し
+2. リクエスト。サブリクエストと同様にメインリクエストを含む。
+3. データベースクエリー
+4. アプリケーションにおける実行回数の平均
+
+[!!] プロファイリングを動作させるためにはブートストラップの[Kohana::init()]呼び出しで`profile`を `TRUE`に設定します。
+
+<div class="original-doc">
 # Profiling
 
 Kohana provides a very simple way to display statistics about your application:
@@ -8,7 +19,33 @@ Kohana provides a very simple way to display statistics about your application:
 4. Average execution times for your application
 
 [!!]  In order for profiling to work, the `profile` setting must be `TRUE` in your [Kohana::init()] call in your bootstrap.
+</div>
 
+## コードを分析する {#profile-your-code}
+
+あなた独自の関数とコードに簡単に分析することができます。これは [Profiler::start()] 関数によって行われます。第1引数にはグループ、第2引数はベンチマークの名前を指定します。
+
+	public function foobar($input)
+	{
+		// プロファイルが有効になっているか確認
+		if (Kohana::$profiling === TRUE)
+		{
+			// 新しいベンチマークを開始する
+			$benchmark = Profiler::start('Your Category', __FUNCTION__);
+		}
+
+		// 何かの処理をする
+
+		if (isset($benchmark))
+		{
+			// ベンチマークを停止する
+			Profiler::stop($benchmark);
+		}
+
+		return $something;
+	} 
+
+<div class="original-doc">
 ## Profiling your code
 
 You can easily add profiling to your own functions and code.  This is done using the [Profiler::start()] function.  The first parameter is the group, the second parameter is the name of the benchmark.  
@@ -31,24 +68,49 @@ You can easily add profiling to your own functions and code.  This is done using
 		}
 
 		return $something;
-	}
+	} 
+</div>
 
+## 分析結果の読み方 {#how-to-read-the-profiling-report}
+ベンチマークはグループに格納されます。各ベンチマークはその名前、実行時間（ベンチマークの名前の後ろに括弧で表示）とその最小、最大、平均、そして合計時間とベンチマークにおけるメモリ消費を表示します。
+合計の欄は、同じグループの中でベンチマーク間の相対的な時間を示すために背景が暗くなっています。
+
+一番最後に"Application Execution"と呼ばれるグループがあります。
+これは、それぞれどれくらいの時間が実行にかかったかの記録です。
+括弧中の数は、どれだけの実行が比較されているかです。
+これは最後の数回のリクエストにおける最も速い時間、最も遅い時間、平均時間とメモリ使用量を表します。
+最後の列は現在のリクエストの実行時間とメモリ使用量です。
+
+
+<div class="original-doc">
 ## How to read the profiling report
 
 The benchmarks are sorted into groups.  Each benchmark will show its name, how many times it was run (show in parenthesis after the benchmark name), and then the min, max, average, and total time and memory spent on that benchmark.  The total column will have shaded backgrounds to show the relative times between benchmarks in the same group.
 
 At the very end is a group called "Application Execution".  This keeps track of how long each execution has taken.  The number in parenthesis is how many executions are being compared.  It shows the fastest, slowest, and average time and memory usage of the last several requsets.  The last box is the time and memory usage of the current request.
 
-((This could use a picture of a profiler with some database queries, etc. with annotations to point out each area as just described.))
 
+((This could use a picture of a profiler with some database queries, etc. with annotations to point out each area as just described.))
+</div>
+
+## プロファイルの表示 {#displaying-the-profiler}
+いつでも現在の[プロファイル](../api/Profiler)を収集／表示することができます。
+
+<div class="original-doc">
 ## Displaying the profiler
 
 You can display or collect the current [profiler] statistics at any time:
+</div>
 
-    <?php echo View::factory('profiler/stats') ?>
+	<?php echo View::factory('profiler/stats') ?>
 
+## プレビュー {#preview}
+
+(これはこのページの実際の統計です)
+
+<div class="original-doc">
 ## Preview
 
 (This is the actual profiler stats for this page.)
-
+</div>
 {{profiler/stats}}
