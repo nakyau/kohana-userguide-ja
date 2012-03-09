@@ -1,4 +1,4 @@
-# Sharing Kohana
+# Kohanaの共有 {#sharing-kohana}
 
 Kohanaはフロントコントローラーパターンに従っています。これは全てのリクエストが`index.php`に送信されることを意味し、そのファイルシステムは設定が容易です。`index.php`の内部で`$applocation`,`$modules`,`$system`のパスを変更可能です。
 

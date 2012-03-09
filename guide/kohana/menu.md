@@ -40,12 +40,12 @@
 - [チュートリアル](tutorials)
    - [Hello World](tutorials/hello-world)
    - [Simple MVC](tutorials/simple-mvc)
-   - [Custom Error Pages](tutorials/error-pages)
+   - [カスタムエラーページ](tutorials/error-pages)
    - [Content Translation](tutorials/translation)
-   - [Clean URLs](tutorials/clean-urls)
-   - [Sharing Kohana](tutorials/sharing-kohana)
+   - [きれいなURL](tutorials/clean-urls)
+   - [Kohanaの共有](tutorials/sharing-kohana)
    - [Template Driven Site](tutorials/templates)
-   - [Working with Git](tutorials/git)
+   - [Gitと一緒に使う](tutorials/git)
 
 <div class="original-doc">
 ## [Kohana]()
